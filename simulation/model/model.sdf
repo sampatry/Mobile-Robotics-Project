@@ -1,0 +1,22 @@
+<?xml version="1.0"?>
+<sdf version="1.6">
+  <model name="my_map">
+    <static>true</static>
+    <link name="map_link">
+      <visual name="map_visual">
+        <geometry>
+          <mesh>
+            <uri>model://my_map/meshes/Group 3_Project_Map</uri>
+          </mesh>
+        </geometry>
+      </visual>
+      <collision name="map_collision">
+        <geometry>
+          <mesh>
+            <uri>model://my_map/meshes/Group 3_Project_Map</uri>
+          </mesh>
+        </geometry>
+      </collision>
+    </link>
+  </model>
+</sdf>
