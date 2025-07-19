@@ -46,3 +46,10 @@ source install/setup.bash
 
 # 5. Launch the full robot system (example)
 ros2 launch launch/full_simulation.launch.py
+
+
+To run gazebo with the model run
+export GAZEBO_MODEL_PATH=/home/sam/MR_Project/simulation/model:$GAZEBO_MODEL_PATH
+
+gazebo --verbose /home/sam/MR_Project/simulation/world/your_world.world
+

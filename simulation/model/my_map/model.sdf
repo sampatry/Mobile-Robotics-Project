@@ -6,14 +6,14 @@
       <visual name="map_visual">
         <geometry>
           <mesh>
-            <uri>model://my_map/meshes/Group 3_Project_Map</uri>
+            <uri>model://my_map/meshes/group3_project_map.stl</uri>
           </mesh>
         </geometry>
       </visual>
       <collision name="map_collision">
         <geometry>
           <mesh>
-            <uri>model://my_map/meshes/Group 3_Project_Map</uri>
+            <uri>model://my_map/meshes/group3_project_map.stl</uri>
           </mesh>
         </geometry>
       </collision>

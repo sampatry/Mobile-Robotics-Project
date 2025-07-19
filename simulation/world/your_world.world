@@ -1,4 +1,15 @@
-<include>
-  <uri>model://my_map</uri>
-  <pose>0 0 0 0 0 0</pose> <!-- Adjust pose if needed -->
-</include>
+<?xml version="1.0"?>
+<sdf version="1.6">
+  <world name="default">
+    <include>
+      <uri>model://my_map</uri>
+      <pose>0 0 0 0 0 0</pose> <x y z roll pitch yaw
+    </include>
+    <include>
+      <uri>model://sun</uri>
+    </include>
+    <include>
+      <uri>model://ground_plane</uri>
+    </include>
+  </world>
+</sdf>
