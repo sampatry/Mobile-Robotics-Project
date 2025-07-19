@@ -36,7 +36,7 @@ Since we’re still learning ROS2 and Gazebo, setup steps will evolve. This is a
 source /opt/ros/humble/setup.bash
 
 # 2. Clone this repo and navigate into it
-cd ~/turtlebot3_project
+cd ~/Mobile-Robotics-Project
 
 # 3. Build the workspace
 colcon build
@@ -48,7 +48,8 @@ source install/setup.bash
 ros2 launch launch/full_simulation.launch.py
 
 
-To run gazebo with the model run
+To run just gazebo with the model run
+
 export GAZEBO_MODEL_PATH=/home/sam/MR_Project/simulation/model:$GAZEBO_MODEL_PATH
 
 gazebo --verbose /home/sam/MR_Project/simulation/world/your_world.world
