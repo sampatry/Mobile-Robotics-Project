@@ -49,8 +49,14 @@ ros2 launch launch/full_simulation.launch.py
 
 
 To run just gazebo with the model run
+export TURTLEBOT3_MODEL=burger
 
 export GAZEBO_MODEL_PATH=/home/sam/MR_Project/simulation/model:$GAZEBO_MODEL_PATH
 
 gazebo --verbose /home/sam/MR_Project/simulation/world/your_world.world
+
+
+colcon build --symlink-install
+source install/setup.bash
+ros2 launch my_simulation_pkg custom_world.launch.py
 
