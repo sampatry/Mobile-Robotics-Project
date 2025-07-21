@@ -1,0 +1,28 @@
+[0.917s] Invoking command in '/home/sam/MR_Project/build/my_simulation_pkg': PYTHONPATH=/home/sam/MR_Project/build/my_simulation_pkg/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/home/sam/MR_Project/install/my_simulation_pkg/lib/python3.10/site-packages:${PYTHONPATH} /usr/bin/python3 -W ignore:setup.py install is deprecated -W ignore:easy_install command is deprecated setup.py develop --uninstall --editable --build-directory /home/sam/MR_Project/build/my_simulation_pkg/build
+[1.366s] running develop
+[1.614s] Removing /home/sam/MR_Project/install/my_simulation_pkg/lib/python3.10/site-packages/my-simulation-pkg.egg-link (link to .)
+[1.676s] Invoked command in '/home/sam/MR_Project/build/my_simulation_pkg' returned '0': PYTHONPATH=/home/sam/MR_Project/build/my_simulation_pkg/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/home/sam/MR_Project/install/my_simulation_pkg/lib/python3.10/site-packages:${PYTHONPATH} /usr/bin/python3 -W ignore:setup.py install is deprecated -W ignore:easy_install command is deprecated setup.py develop --uninstall --editable --build-directory /home/sam/MR_Project/build/my_simulation_pkg/build
+[1.688s] Invoking command in '/home/sam/MR_Project/src/my_simulation_pkg': PYTHONPATH=/home/sam/MR_Project/build/my_simulation_pkg/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/home/sam/MR_Project/install/my_simulation_pkg/lib/python3.10/site-packages:${PYTHONPATH} /usr/bin/python3 -W ignore:setup.py install is deprecated -W ignore:easy_install command is deprecated setup.py egg_info --egg-base ../../build/my_simulation_pkg build --build-base /home/sam/MR_Project/build/my_simulation_pkg/build install --record /home/sam/MR_Project/build/my_simulation_pkg/install.log --single-version-externally-managed install_data --force
+[2.259s] running egg_info
+[2.259s] writing ../../build/my_simulation_pkg/my_simulation_pkg.egg-info/PKG-INFO
+[2.259s] writing dependency_links to ../../build/my_simulation_pkg/my_simulation_pkg.egg-info/dependency_links.txt
+[2.282s] writing entry points to ../../build/my_simulation_pkg/my_simulation_pkg.egg-info/entry_points.txt
+[2.282s] writing requirements to ../../build/my_simulation_pkg/my_simulation_pkg.egg-info/requires.txt
+[2.283s] writing top-level names to ../../build/my_simulation_pkg/my_simulation_pkg.egg-info/top_level.txt
+[2.298s] reading manifest file '../../build/my_simulation_pkg/my_simulation_pkg.egg-info/SOURCES.txt'
+[2.299s] writing manifest file '../../build/my_simulation_pkg/my_simulation_pkg.egg-info/SOURCES.txt'
+[2.299s] running build
+[2.299s] running build_py
+[2.299s] running install
+[2.299s] running install_lib
+[2.304s] creating /home/sam/MR_Project/install/my_simulation_pkg/lib/python3.10/site-packages/my_simulation_pkg
+[2.305s] copying /home/sam/MR_Project/build/my_simulation_pkg/build/lib/my_simulation_pkg/__init__.py -> /home/sam/MR_Project/install/my_simulation_pkg/lib/python3.10/site-packages/my_simulation_pkg
+[2.311s] byte-compiling /home/sam/MR_Project/install/my_simulation_pkg/lib/python3.10/site-packages/my_simulation_pkg/__init__.py to __init__.cpython-310.pyc
+[2.311s] running install_data
+[2.311s] copying resource/my_simulation_pkg -> /home/sam/MR_Project/install/my_simulation_pkg/share/ament_index/resource_index/packages
+[2.311s] copying package.xml -> /home/sam/MR_Project/install/my_simulation_pkg/share/my_simulation_pkg
+[2.320s] running install_egg_info
+[2.320s] Copying ../../build/my_simulation_pkg/my_simulation_pkg.egg-info to /home/sam/MR_Project/install/my_simulation_pkg/lib/python3.10/site-packages/my_simulation_pkg-0.0.0-py3.10.egg-info
+[2.326s] running install_scripts
+[2.401s] writing list of installed files to '/home/sam/MR_Project/build/my_simulation_pkg/install.log'
+[2.514s] Invoked command in '/home/sam/MR_Project/src/my_simulation_pkg' returned '0': PYTHONPATH=/home/sam/MR_Project/build/my_simulation_pkg/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/home/sam/MR_Project/install/my_simulation_pkg/lib/python3.10/site-packages:${PYTHONPATH} /usr/bin/python3 -W ignore:setup.py install is deprecated -W ignore:easy_install command is deprecated setup.py egg_info --egg-base ../../build/my_simulation_pkg build --build-base /home/sam/MR_Project/build/my_simulation_pkg/build install --record /home/sam/MR_Project/build/my_simulation_pkg/install.log --single-version-externally-managed install_data --force
