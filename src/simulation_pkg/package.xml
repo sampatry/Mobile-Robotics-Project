@@ -3,14 +3,15 @@
   <name>simulation_pkg</name>
   <version>0.0.1</version>
   <description>Simulation package for TurtleBot3 in a custom Gazebo world</description>
+
   <maintainer email="your@email.com">Sam</maintainer>
   <license>MIT</license>
 
   <buildtool_depend>ament_cmake</buildtool_depend>
 
-  <exec_depend>rclcpp</exec_depend>
   <exec_depend>gazebo_ros</exec_depend>
   <exec_depend>robot_state_publisher</exec_depend>
+  <exec_depend>turtlebot3_description</exec_depend>
 
   <export>
     <build_type>ament_cmake</build_type>

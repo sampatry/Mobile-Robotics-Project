@@ -1,3 +1,4 @@
 {
-    "cmake.sourceDirectory": "/home/sam/MR_Project/src/simulation_pkg"
+    "cmake.sourceDirectory": "/home/sam/MR_Project/src/simulation_pkg",
+    "cmake.ignoreCMakeListsMissing": true
 }
