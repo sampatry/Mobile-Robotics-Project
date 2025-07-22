@@ -13,50 +13,52 @@ Our robot will:
 
 Folder Structure
 
-Here’s what each folder does:
+MR_Project/
+├── src/
+│   ├── my_simulation_pkg/
+│   │   ├── launch/         # Launch files for simulation
+│   │   ├── urdf/           # Robot description (TurtleBot3 URDF)
+│   │   ├── worlds/         # Gazebo .world files
+│   │   ├── models/         # Custom models (SDF + meshes)
+│   │   ├── config/         # Config files (SLAM, Nav2, etc.)
+│   │   ├── setup.py        # Python setup script
+│   │   └── package.xml     # ROS2 manifest
+│   ├── return_to_cell/     # Optional logic (future node or package)
+│   └── vision_tape_detector/ # Vision system (future node or package)
+├── README.md               # You’re reading it!
 
-| Folder | Purpose |
-|--------|---------|
-| `src/` | Contains all our ROS2 packages and custom Python/C++ nodes. Each subfolder is a separate ROS2 component (e.g. tape detection, return-to-cell logic). |
-| `launch/` | ROS2 launch files that start our robot system. This is where we combine SLAM, navigation, and vision nodes into one runtime. |
-| `config/` | YAML files used to configure ROS2 packages like Navigation2 (`nav2`) and SLAM Toolbox. |
-| `simulation/` | Gazebo simulation assets: this includes the `.world` file, URDFs describing our environment layout, and SolidWorks-exported models. |
-| └── `world/` | Gazebo `.world` file describing the map for simulation. |
-| └── `urdf/` | URDF files used to define parts of our environment and robot setup. |
-| └── `model/` | 3D mesh files (e.g. `.stl`, `.dae`) for Gazebo objects, including our custom map. |
-| `maps/` | Saved map files (`.yaml`, `.pgm`) generated during SLAM runs in simulation and real-world testing. |
-| `README.md` | You’re reading it! This file explains our project, repo structure, and how to get started. |
 
-How to Run It (Once Fully Set Up)
 
-Since we’re still learning ROS2 and Gazebo, setup steps will evolve. This is a draft roadmap for future updates.
 
-```bash
-# 1. Source the ROS2 environment
-source /opt/ros/humble/setup.bash
-
-# 2. Clone this repo and navigate into it
+To build;
 cd ~/Mobile-Robotics-Project
-
-# 3. Build the workspace
-colcon build
-
-# 4. Source the workspace
-source install/setup.bash
-
-# 5. Launch the full robot system (example)
-ros2 launch launch/full_simulation.launch.py
-
-
-To run just gazebo with the model run
-export TURTLEBOT3_MODEL=burger
-
-export GAZEBO_MODEL_PATH=/home/sam/MR_Project/simulation/model:$GAZEBO_MODEL_PATH
-
-gazebo --verbose /home/sam/MR_Project/simulation/world/your_world.world
-
-
 colcon build --symlink-install
-source install/setup.bash
-ros2 launch my_simulation_pkg custom_world.launch.py
+
+To start sim;
+ros2 launch simulation_pkg custom_world.launch.py
+
+Other;
+ros2 run turtlebot3_teleop teleop_keyboard
+ros2 launch turtlebot3_bringup rviz2.launch.py
+
+ros2 launch turtlebot3_cartographer cartographer.launch.py use_sim_time:=True //creates map from lidar scan
+
+Dependencies
+
+sudo apt install ros-humble-turtlebot3*
+
+link to make turtlebot workspace (i need to verify if we need this)
+https://emanual.robotis.com/docs/en/platform/turtlebot3/simulation/
+
+
+source /opt/ros/humble/setup.bash
+export TURTLEBOT3_MODEL=burger
+export GAZEBO_MODEL_PATH=$GAZEBO_MODEL_PATH:/opt/ros/humble/share/turtlebot3_description
+
+reseting colcon;
+unset AMENT_PREFIX_PATH
+unset CMAKE_PREFIX_PATH
+unset COLCON_PREFIX_PATH
+
+
 
