@@ -28,35 +28,37 @@ MR_Project/
 ├── README.md               # You’re reading it!
 
 
-How to Run It (Once Fully Set Up)
 
-# 1. Source ROS2 (if not already done)
-source /opt/ros/humble/setup.bash
 
-# 2. Build your workspace
-cd ~/MR_Project
+To build;
+cd ~/Mobile-Robotics-Project
 colcon build --symlink-install
 
-# 3. Source the workspace
-source install/setup.bash
+To start sim;
+ros2 launch simulation_pkg custom_world.launch.py
 
-# 4. Launch the simulation with your world + robot
-ros2 launch my_simulation_pkg custom_world.launch.py
+Other;
+ros2 run turtlebot3_teleop teleop_keyboard
+ros2 launch turtlebot3_bringup rviz2.launch.py
 
-or all-together
-source /opt/ros/humble/setup.bash
-cd ~/MR_Project
-colcon build --symlink-install
-ros2 launch my_simulation_pkg custom_world.launch.py
+ros2 launch turtlebot3_cartographer cartographer.launch.py use_sim_time:=True //creates map from lidar scan
 
 Dependencies
 
-sudo apt install ros-humble-turtlebot3-description
-export TURTLEBOT3_MODEL=burger
-export GAZEBO_MODEL_PATH=$HOME/MR_Project/src/my_simulation_pkg/models:$GAZEBO_MODEL_PATH
+sudo apt install ros-humble-turtlebot3*
 
+link to make turtlebot workspace (i need to verify if we need this)
+https://emanual.robotis.com/docs/en/platform/turtlebot3/simulation/
+
+
+source /opt/ros/humble/setup.bash
+export TURTLEBOT3_MODEL=burger
 export GAZEBO_MODEL_PATH=$GAZEBO_MODEL_PATH:/opt/ros/humble/share/turtlebot3_description
-source ~/MR_Project/install/setup.bash
+
+reseting colcon;
+unset AMENT_PREFIX_PATH
+unset CMAKE_PREFIX_PATH
+unset COLCON_PREFIX_PATH
 
 
 

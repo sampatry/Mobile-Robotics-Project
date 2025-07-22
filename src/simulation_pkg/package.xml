@@ -4,7 +4,7 @@
   <version>0.0.1</version>
   <description>Simulation package for TurtleBot3 in a custom Gazebo world</description>
 
-  <maintainer email="your@email.com">Sam</maintainer>
+  <maintainer email="sampatry8@gmail.com">Sam</maintainer>
   <license>MIT</license>
 
   <buildtool_depend>ament_cmake</buildtool_depend>
