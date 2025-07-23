@@ -6,24 +6,23 @@ What We’re Building
 
 Our robot will:
 - Map the environment using **SLAM**
-- Navigate lanes marked by **red tape**
+- Avoid lanes marked by **red tape**
 - Avoid randomly placed **obstacles**
 - **Return** to its starting cell at the end of its mission
 - Work in **real life** *and* inside **Gazebo simulation**
 
 
 To build;
-cd ~/Mobile-Robotics-Project
-colcon build --symlink-install
+- cd ~/Mobile-Robotics-Project
+- colcon build --symlink-install
 
 To start sim;
-ros2 launch simulation_pkg custom_world.launch.py
+- ros2 launch simulation_pkg custom_world.launch.py
 
-Other;
-ros2 run turtlebot3_teleop teleop_keyboard
-ros2 launch turtlebot3_bringup rviz2.launch.py
-
-ros2 launch turtlebot3_cartographer cartographer.launch.py use_sim_time:=True //creates map from lidar scan
+Other usefull ros commands;
+- ros2 run turtlebot3_teleop teleop_keyboard
+- ros2 launch turtlebot3_bringup rviz2.launch.py
+- ros2 launch turtlebot3_cartographer cartographer.launch.py use_sim_time:=True //creates map from lidar scan
 
 Dependencies
 
