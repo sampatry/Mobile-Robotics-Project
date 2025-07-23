@@ -34,8 +34,8 @@ def generate_launch_description():
     world_path = os.path.join(pkg_sim, 'worlds', 'your_world.world')
 
     use_sim_time = LaunchConfiguration('use_sim_time', default='true')
-    x_pose = LaunchConfiguration('x_pose', default='0.0')
-    y_pose = LaunchConfiguration('y_pose', default='0.0')
+    x_pose = LaunchConfiguration('x_pose', default='1.0')
+    y_pose = LaunchConfiguration('y_pose', default='1.5')
 
 
 

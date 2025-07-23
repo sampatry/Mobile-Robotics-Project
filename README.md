@@ -11,24 +11,6 @@ Our robot will:
 - **Return** to its starting cell at the end of its mission
 - Work in **real life** *and* inside **Gazebo simulation**
 
-Folder Structure
-
-MR_Project/
-├── src/
-│   ├── my_simulation_pkg/
-│   │   ├── launch/         # Launch files for simulation
-│   │   ├── urdf/           # Robot description (TurtleBot3 URDF)
-│   │   ├── worlds/         # Gazebo .world files
-│   │   ├── models/         # Custom models (SDF + meshes)
-│   │   ├── config/         # Config files (SLAM, Nav2, etc.)
-│   │   ├── setup.py        # Python setup script
-│   │   └── package.xml     # ROS2 manifest
-│   ├── return_to_cell/     # Optional logic (future node or package)
-│   └── vision_tape_detector/ # Vision system (future node or package)
-├── README.md               # You’re reading it!
-
-
-
 
 To build;
 cd ~/Mobile-Robotics-Project
