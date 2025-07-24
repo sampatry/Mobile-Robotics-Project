@@ -6,59 +6,52 @@ What We’re Building
 
 Our robot will:
 - Map the environment using **SLAM**
-- Navigate lanes marked by **red tape**
+- Avoid lanes marked by **red tape**
 - Avoid randomly placed **obstacles**
 - **Return** to its starting cell at the end of its mission
 - Work in **real life** *and* inside **Gazebo simulation**
 
-Folder Structure
-
-MR_Project/
-├── src/
-│   ├── my_simulation_pkg/
-│   │   ├── launch/         # Launch files for simulation
-│   │   ├── urdf/           # Robot description (TurtleBot3 URDF)
-│   │   ├── worlds/         # Gazebo .world files
-│   │   ├── models/         # Custom models (SDF + meshes)
-│   │   ├── config/         # Config files (SLAM, Nav2, etc.)
-│   │   ├── setup.py        # Python setup script
-│   │   └── package.xml     # ROS2 manifest
-│   ├── return_to_cell/     # Optional logic (future node or package)
-│   └── vision_tape_detector/ # Vision system (future node or package)
-├── README.md               # You’re reading it!
-
-
-
 
 To build;
-cd ~/Mobile-Robotics-Project
-colcon build --symlink-install
+- cd ~/Mobile-Robotics-Project
+- colcon build --symlink-install
 
 To start sim;
-ros2 launch simulation_pkg custom_world.launch.py
+- ros2 launch simulation_pkg custom_world.launch.py
 
-Other;
-ros2 run turtlebot3_teleop teleop_keyboard
-ros2 launch turtlebot3_bringup rviz2.launch.py
+To manually generate map;
+- ros2 run turtlebot3_teleop teleop_keyboard #manual control of bot
+- ros2 launch turtlebot3_cartographer cartographer.launch.py use_sim_time:=True #creates the map as you move around
+- ros2 run nav2_map_server map_saver_cli -f my_map #to save the map
 
-ros2 launch turtlebot3_cartographer cartographer.launch.py use_sim_time:=True //creates map from lidar scan
+- ros2 launch turtlebot3_bringup rviz2.launch.py #Use RViz2 to visualize robot sensors and motion
 
-Dependencies
+once scan is done, nav2 can be run with (set the proper path to map file)
+- ros2 launch nav2_bringup localization_launch.py map:=/home/sam/my_map.yaml use_sim_time:=True
+- ros2 launch turtlebot3_navigation2 navigation2.launch.py use_sim_time:=True map:=/home/sam/Mobile-Robotics-Project/src/simulation_pkg/map/my_map.yaml
 
+
+Dependencies;
+make sure to have the following in .bashrc (so they load on new terminal)
+source /opt/ros/humble/setup.bash #if it doenst compile you might need to run this
+source ~/Mobile-Robotics-Project/install/setup.bash #if it doesnt run you might need to run this
+
+export TURTLEBOT3_MODEL=burger
+export GAZEBO_MODEL_PATH=$GAZEBO_MODEL_PATH:/home/sam/Mobile-Robotics-Project/src/simulation_pkg/models
+export GAZEBO_MODEL_PATH=$GAZEBO_MODEL_PATH:/opt/ros/humble/share/turtlebot3_description
+
+you may need to install the following
 sudo apt install ros-humble-turtlebot3*
 
 link to make turtlebot workspace (i need to verify if we need this)
 https://emanual.robotis.com/docs/en/platform/turtlebot3/simulation/
-
-
-source /opt/ros/humble/setup.bash
-export TURTLEBOT3_MODEL=burger
-export GAZEBO_MODEL_PATH=$GAZEBO_MODEL_PATH:/opt/ros/humble/share/turtlebot3_description
 
 reseting colcon;
 unset AMENT_PREFIX_PATH
 unset CMAKE_PREFIX_PATH
 unset COLCON_PREFIX_PATH
 
+might be usefull for nav2
+https://roboticsbackend.com/ros2-nav2-tutorial/#Make_the_robot_move_in_the_environment
 
 
