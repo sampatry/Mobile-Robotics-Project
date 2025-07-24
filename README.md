@@ -24,17 +24,17 @@ To manually generate map;
 - ros2 launch turtlebot3_cartographer cartographer.launch.py use_sim_time:=True #creates the map as you move around
 - ros2 run nav2_map_server map_saver_cli -f my_map #to save the map
 
-- ros2 launch turtlebot3_bringup rviz2.launch.py
+- ros2 launch turtlebot3_bringup rviz2.launch.py #Use RViz2 to visualize robot sensors and motion
 
 once scan is done, nav2 can be run with (set the proper path to map file)
 - ros2 launch nav2_bringup localization_launch.py map:=/home/sam/my_map.yaml use_sim_time:=True
-- ros2 launch turtlebot3_navigation2 navigation2.launch.py use_sim_time:=True map:=/home/sam/my_map.yaml
+- ros2 launch turtlebot3_navigation2 navigation2.launch.py use_sim_time:=True map:=/home/sam/Mobile-Robotics-Project/src/simulation_pkg/map/my_map.yaml
 
 
 Dependencies;
 make sure to have the following in .bashrc (so they load on new terminal)
-source /opt/ros/humble/setup.bash
-source ~/Mobile-Robotics-Project/install/setup.bash
+source /opt/ros/humble/setup.bash #if it doenst compile you might need to run this
+source ~/Mobile-Robotics-Project/install/setup.bash #if it doesnt run you might need to run this
 
 export TURTLEBOT3_MODEL=burger
 export GAZEBO_MODEL_PATH=$GAZEBO_MODEL_PATH:/home/sam/Mobile-Robotics-Project/src/simulation_pkg/models
