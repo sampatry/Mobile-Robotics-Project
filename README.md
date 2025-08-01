@@ -53,5 +53,6 @@ unset COLCON_PREFIX_PATH
 
 might be usefull for nav2
 https://roboticsbackend.com/ros2-nav2-tutorial/#Make_the_robot_move_in_the_environment
+https://github.com/ros-navigation/navigation2/blob/main/nav2_simple_commander/nav2_simple_commander/example_nav_to_pose.py
 
 
