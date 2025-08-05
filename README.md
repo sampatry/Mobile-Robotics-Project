@@ -15,9 +15,14 @@ Our robot will:
 To build;
 - cd ~/Mobile-Robotics-Project
 - colcon build --symlink-install
+Make sure to source Ros and the workspace before running
+- source /opt/ros/humble/setup.bash
+- source ~/Mobile-Robotics-Project/install/setup.bash
+
 
 To start sim;
-- ros2 launch simulation_pkg custom_world.launch.py
+- ros2 launch simulation_pkg custom_world.launch.py #start only gazebo
+- ros2 launch navigation_pkg navigation.launch.py #start gazebo with rviz
 
 To manually generate map;
 - ros2 run turtlebot3_teleop teleop_keyboard #manual control of bot

@@ -1,4 +1,4 @@
-#! /usr/bin/env python3
+#!/usr/bin/env python3
 
 from geometry_msgs.msg import PoseStamped
 from nav2_simple_commander.robot_navigator import BasicNavigator, TaskResult
@@ -21,41 +21,18 @@ def main():
     initial_pose.pose.position.x = 1.00
     initial_pose.pose.position.y = 1.50
     initial_pose.pose.orientation.z = 0.0
-    initial_pose.pose.orientation.w = 0.0
+    initial_pose.pose.orientation.w = 1.0
     navigator.setInitialPose(initial_pose)
 
     navigator.waitUntilNav2Active()
 
     # If desired, you can change or load the map as well
-    # navigator.changeMap('/path/to/map.yaml')
+    #navigator.changeMap('/path/to/map.yaml')
 
     # You may use the navigator to clear or obtain costmaps
     # navigator.clearAllCostmaps()  # also have clearLocalCostmap() and clearGlobalCostmap()
     # global_costmap = navigator.getGlobalCostmap()
     # local_costmap = navigator.getLocalCostmap()
-#     WP_4
-#     position:
-#       x: 0.03681457042694092
-#       y: 0.009493004530668259
-#       z: 0.2
-#     orientation:
-#       x: 0.0
-#       y: 0.0
-#       z: -0.010546966719868139
-#       w: 0.9999443791996683
-# ---
-# WP_3
-# pose:
-#     position:
-#       x: 2.2988221645355225
-#       y: -1.388335108757019
-#       z: 0.2
-#     orientation:
-#       x: 0.0
-#       y: 0.0
-#       z: 0.6245186426894292
-#       w: 0.7810099006628232
-
 
     # Go to our demos first goal pose
     goal_pose = PoseStamped()
@@ -63,7 +40,7 @@ def main():
     goal_pose.header.stamp = navigator.get_clock().now().to_msg()
     goal_pose.pose.position.x = 2
     goal_pose.pose.position.y = -1
-    goal_pose.pose.orientation.w = 0.78
+    goal_pose.pose.orientation.w = 1
 
     # sanity check a valid path exists
     # path = navigator.getPath(initial_pose, goal_pose)
