@@ -5,11 +5,6 @@ from nav2_simple_commander.robot_navigator import BasicNavigator, TaskResult
 import rclpy
 from rclpy.duration import Duration
 
-"""
-Basic navigation demo to go to pose.
-"""
-
-
 def main():
     rclpy.init()
 
@@ -26,21 +21,13 @@ def main():
 
     navigator.waitUntilNav2Active()
 
-    # If desired, you can change or load the map as well
-    #navigator.changeMap('/path/to/map.yaml')
-
-    # You may use the navigator to clear or obtain costmaps
-    # navigator.clearAllCostmaps()  # also have clearLocalCostmap() and clearGlobalCostmap()
-    # global_costmap = navigator.getGlobalCostmap()
-    # local_costmap = navigator.getLocalCostmap()
-
     # Go to our demos first goal pose
     goal_pose = PoseStamped()
     goal_pose.header.frame_id = 'map'
     goal_pose.header.stamp = navigator.get_clock().now().to_msg()
-    goal_pose.pose.position.x = 2
-    goal_pose.pose.position.y = -1
-    goal_pose.pose.orientation.w = 1
+    goal_pose.pose.position.x = 2.0
+    goal_pose.pose.position.y = 1.0
+    goal_pose.pose.orientation.w = 1.0
 
     # sanity check a valid path exists
     # path = navigator.getPath(initial_pose, goal_pose)

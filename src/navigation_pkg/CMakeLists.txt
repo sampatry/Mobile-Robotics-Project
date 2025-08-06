@@ -22,7 +22,7 @@ install(TARGETS
 
 # Install Python scripts
 install(PROGRAMS
-  scripts/nav_demo.py
+  scripts/multi_waypoint.py
   scripts/single_goal_nav.py
   DESTINATION lib/${PROJECT_NAME})
 

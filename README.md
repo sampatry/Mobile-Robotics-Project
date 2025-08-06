@@ -19,6 +19,11 @@ Make sure to source Ros and the workspace before running
 - source /opt/ros/humble/setup.bash
 - source ~/Mobile-Robotics-Project/install/setup.bash
 
+What works right now
+- ros2 launch simulation_pkg custom_world.launch.py #start only gazebo
+- ros2 launch turtlebot3_navigation2 navigation2.launch.py use_sim_time:=True map:=/home/$USER/Mobile-Robotics-Project/src/simulation_pkg/map/my_map.yaml
+- ros2 run navigation_pkg multi_waypoint.py
+
 
 To start sim;
 - ros2 launch simulation_pkg custom_world.launch.py #start only gazebo
@@ -32,8 +37,8 @@ To manually generate map;
 - ros2 launch turtlebot3_bringup rviz2.launch.py #Use RViz2 to visualize robot sensors and motion
 
 once scan is done, nav2 can be run with (set the proper path to map file)
-- ros2 launch nav2_bringup localization_launch.py map:=/home/sam/my_map.yaml use_sim_time:=True
-- ros2 launch turtlebot3_navigation2 navigation2.launch.py use_sim_time:=True map:=/home/sam/Mobile-Robotics-Project/src/simulation_pkg/map/my_map.yaml
+- ros2 launch nav2_bringup localization_launch.py map:=/home/$USER/my_map.yaml use_sim_time:=True
+- ros2 launch turtlebot3_navigation2 navigation2.launch.py use_sim_time:=True map:=/home/$USER/Mobile-Robotics-Project/src/simulation_pkg/map/my_map.yaml
 
 
 Dependencies;
@@ -42,10 +47,10 @@ source /opt/ros/humble/setup.bash #if it doenst compile you might need to run th
 source ~/Mobile-Robotics-Project/install/setup.bash #if it doesnt run you might need to run this
 
 export TURTLEBOT3_MODEL=burger
-export GAZEBO_MODEL_PATH=$GAZEBO_MODEL_PATH:/home/sam/Mobile-Robotics-Project/src/simulation_pkg/models
+export GAZEBO_MODEL_PATH=$GAZEBO_MODEL_PATH:/home/$USER/Mobile-Robotics-Project/src/simulation_pkg/models
 export GAZEBO_MODEL_PATH=$GAZEBO_MODEL_PATH:/opt/ros/humble/share/turtlebot3_description
 
-you may need to install the following
+You may need to install the following
 sudo apt install ros-humble-turtlebot3*
 
 link to make turtlebot workspace (i need to verify if we need this)
