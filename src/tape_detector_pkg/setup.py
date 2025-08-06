@@ -11,9 +11,12 @@ setup(
     zip_safe=True,
     maintainer='sam',
     maintainer_email='sampatry8@gmail.com',
-    description='Tape detector node that visualizes tape on ground as obstacles in RViz',
+    description='Tape detector node',
     license='MIT',
     tests_require=['pytest'],
+    data_files=[
+        ('share/' + package_name, ['package.xml']),
+    ],
     entry_points={
         'console_scripts': [
             'tape_detector = scripts.detector_node:main',
