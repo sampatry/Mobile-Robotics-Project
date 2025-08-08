@@ -21,8 +21,12 @@ Make sure to source Ros and the workspace before running
 
 What works right now
 - ros2 launch simulation_pkg custom_world.launch.py #start only gazebo
-- ros2 launch turtlebot3_navigation2 navigation2.launch.py use_sim_time:=True map:=/home/$USER/Mobile-Robotics-Project/src/simulation_pkg/map/my_map.yaml
+or
+- ros2 launch turtlebot3_bringup robot.launch.py #for running turtlebot node on actual bot
+
+- ros2 launch turtlebot3_navigation2 navigation2.launch.py use_sim_time:=True map:=/home/$USER/Mobile-Robotics-Project/src/navigation_pkg/config/my_map.yaml
 - ros2 run navigation_pkg multi_waypoint.py
+
 
 
 To start sim;
