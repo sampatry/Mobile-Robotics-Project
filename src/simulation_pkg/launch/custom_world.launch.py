@@ -7,6 +7,7 @@ from launch import LaunchDescription
 from launch.actions import IncludeLaunchDescription
 from launch.launch_description_sources import PythonLaunchDescriptionSource
 from launch.substitutions import LaunchConfiguration
+import math
 
 
 def generate_launch_description():
@@ -18,10 +19,9 @@ def generate_launch_description():
     world_path = os.path.join(pkg_sim, 'worlds', 'your_world.world')
 
     use_sim_time = LaunchConfiguration('use_sim_time', default='true')
-    x_pose = LaunchConfiguration('x_pose', default='1.0')
-    y_pose = LaunchConfiguration('y_pose', default='1.5')
-
-
+    x_pose = LaunchConfiguration('x_pose', default='1.9')
+    y_pose = LaunchConfiguration('y_pose', default='2.4')
+    yaw = LaunchConfiguration('yaw', default='1.5708')  # ~90 degrees in radians
 
     gzserver_cmd = IncludeLaunchDescription(
         PythonLaunchDescriptionSource(
@@ -49,7 +49,8 @@ def generate_launch_description():
         ),
         launch_arguments={
             'x_pose': x_pose,
-            'y_pose': y_pose
+            'y_pose': y_pose,
+            'yaw': yaw,
         }.items()
     )
 

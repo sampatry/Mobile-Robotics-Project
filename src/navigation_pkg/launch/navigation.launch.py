@@ -18,84 +18,22 @@ def generate_launch_description():
         IncludeLaunchDescription(
             PythonLaunchDescriptionSource([get_package_share_directory('simulation_pkg'),'/launch','/custom_world.launch.py'])
         ),
+        # IncludeLaunchDescription(
+        #     PythonLaunchDescriptionSource([get_package_share_directory('nav2_bringup'),'/launch','/bringup_launch.py']),
+        #     #PythonLaunchDescriptionSource([get_package_share_directory('nav2_bringup'),'/launch','/localization_launch.py']),
+        #     launch_arguments={
+        #         'map': map_file,
+        #         # 'params_file': param_file,
+        #         'use_sim_time': 'true'
+        #     }.items(),
+        # ),
+
         IncludeLaunchDescription(
-            PythonLaunchDescriptionSource([get_package_share_directory('nav2_bringup'),'/launch','/bringup_launch.py']),
-            #PythonLaunchDescriptionSource([get_package_share_directory('nav2_bringup'),'/launch','/localization_launch.py']),
-            launch_arguments={
-                'map': map_file,
-                'params_file': param_file,
-                'use_sim_time': 'true'
-            }.items(),
-        ),
-        IncludeLaunchDescription(
-            PythonLaunchDescriptionSource([
-                os.path.join(get_package_share_directory('nav2_bringup'), 'launch', 'localization_launch.py')
-            ]),
+            PythonLaunchDescriptionSource([os.path.join(get_package_share_directory('turtlebot3_navigation2'), 'launch', 'navigation2.launch.py')]),
             launch_arguments={
                 'map': map_file,
                 'use_sim_time': 'true',
-                'params_file': param_file
             }.items()
         ),
-
-        # IncludeLaunchDescription(
-        #     PythonLaunchDescriptionSource([
-        #         os.path.join(get_package_share_directory('turtlebot3_navigation2'), 'launch', 'navigation2.launch.py')
-        #     ]),
-        #     launch_arguments={
-        #         'map': map_file,
-        #         'use_sim_time': 'true',
-        #         'params_file': param_file
-        #     }.items()
-        # ),
-
-    # Node(
-    #     package='rviz2',
-    #     executable='rviz2',
-    #     name='rviz2_node',
-    #     arguments=['-d', rviz_config_dir],
-    #     output='screen',
-    #     parameters=[{'use_sim_time': True}],
-    # ),
-
-    # Node(
-    #     package='nav2_map_server',
-    #     executable='map_server',
-    #     name='map_server',
-    #     output='screen',
-    #     parameters=[{'yaml_filename': map_file, 'use_sim_time': True}],
-    # ),
-    # Node(
-    #     package='nav2_amcl',
-    #     executable='amcl',
-    #     name='amcl',
-    #     output='screen',
-    #     parameters=[{'use_sim_time': True}],
-    # ),
-    # Node(
-    #     package='nav2_lifecycle_manager',
-    #     executable='lifecycle_manager',
-    #     name='lifecycle_manager_localization',
-    #     output='screen',
-    #     parameters=[{
-    #         'use_sim_time': True,
-    #         'autostart': True,
-    #         'node_names': ['map_server', 'amcl']
-    #     }],
-    # ),
-
-
-    # TimerAction(
-    #     period=10.0,  # adjust as needed
-    #     actions=[
-    #         Node(
-    #             package='navigation_pkg',
-    #             executable='single_goal_nav.py',
-    #             name='single_goal_nav',
-    #             output='screen',
-    #             parameters=[{'use_sim_time': True}],
-    #         )
-    #     ]
-    # ),
 
     ])
