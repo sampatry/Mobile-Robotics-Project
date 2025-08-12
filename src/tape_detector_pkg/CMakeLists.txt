@@ -8,6 +8,7 @@ find_package(ament_cmake_python REQUIRED)
 # Install Python script
 install(PROGRAMS
   scripts/detector_node.py
+  scripts/test.py
   DESTINATION lib/${PROJECT_NAME}
 )
 

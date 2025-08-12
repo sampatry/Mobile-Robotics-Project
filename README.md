@@ -12,6 +12,7 @@ Our robot will:
 To build;
 - cd ~/Mobile-Robotics-Project
 - colcon build --symlink-install
+- colcon build --packages-select navigation_pkg tape_detector_pkg
 Make sure to source Ros and the workspace before running
 - source /opt/ros/humble/setup.bash
 - source ~/Mobile-Robotics-Project/install/setup.bash
