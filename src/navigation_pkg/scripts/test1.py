@@ -5,6 +5,7 @@ from copy import deepcopy
 from geometry_msgs.msg import PoseStamped
 from nav2_simple_commander.robot_navigator import BasicNavigator, TaskResult
 import rclpy
+from launch.actions import TimerAction
 
 """
 Basic stock inspection demo. In this demonstration, the expectation
