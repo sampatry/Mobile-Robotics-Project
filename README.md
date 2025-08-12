@@ -10,8 +10,10 @@ Our robot will:
 
 
 To build;
+- rm -rf build/ install/ log/ #(optional)
 - cd ~/Mobile-Robotics-Project
-- colcon build --symlink-install
+- colcon build
+- colcon build --packages-select navigation_pkg tape_detector_pkg #for rasberry pi
 Make sure to source Ros and the workspace before running
 - source /opt/ros/humble/setup.bash
 - source ~/Mobile-Robotics-Project/install/setup.bash

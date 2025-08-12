@@ -1,39 +1,29 @@
 import os
 from ament_index_python.packages import get_package_share_directory
 from launch import LaunchDescription
-from launch_ros.actions import Node
 from launch.actions import IncludeLaunchDescription
 from launch.launch_description_sources import PythonLaunchDescriptionSource
 
-from launch.actions import TimerAction
-
-
 def generate_launch_description():
-    config_dir = os.path.join(get_package_share_directory('navigation_pkg'),'config')
-    map_file = os.path.join(config_dir,'my_map.yaml')
-    param_file = os.path.join(config_dir,'nav2_params.yaml')
-    rviz_config_dir = os.path.join(config_dir,'navigation.rviz')
+    config_dir = os.path.join(get_package_share_directory('navigation_pkg'), 'config')
+    map_file = os.path.join(config_dir, 'my_map.yaml')
+
+    simulation_launch = os.path.join(
+        get_package_share_directory('simulation_pkg'), 'launch', 'custom_world.launch.py'
+    )
+    nav2_launch = os.path.join(
+        get_package_share_directory('turtlebot3_navigation2'), 'launch', 'navigation2.launch.py'
+    )
 
     return LaunchDescription([
         IncludeLaunchDescription(
-            PythonLaunchDescriptionSource([get_package_share_directory('simulation_pkg'),'/launch','/custom_world.launch.py'])
+            PythonLaunchDescriptionSource(simulation_launch)
         ),
-        # IncludeLaunchDescription(
-        #     PythonLaunchDescriptionSource([get_package_share_directory('nav2_bringup'),'/launch','/bringup_launch.py']),
-        #     #PythonLaunchDescriptionSource([get_package_share_directory('nav2_bringup'),'/launch','/localization_launch.py']),
-        #     launch_arguments={
-        #         'map': map_file,
-        #         # 'params_file': param_file,
-        #         'use_sim_time': 'true'
-        #     }.items(),
-        # ),
-
         IncludeLaunchDescription(
-            PythonLaunchDescriptionSource([os.path.join(get_package_share_directory('turtlebot3_navigation2'), 'launch', 'navigation2.launch.py')]),
+            PythonLaunchDescriptionSource(nav2_launch),
             launch_arguments={
                 'map': map_file,
                 'use_sim_time': 'true',
             }.items()
         ),
-
     ])
