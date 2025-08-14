@@ -18,6 +18,7 @@ install(PROGRAMS
   scripts/single_goal_nav.py
   scripts/test1.py
   scripts/occupancy_updater.py
+  scripts/occu_test.py
   DESTINATION lib/${PROJECT_NAME})
 
 

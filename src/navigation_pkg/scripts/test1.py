@@ -22,10 +22,11 @@ def main() -> None:
     # Inspection route, probably read in from a file for a real application
     # from either a map or drive and repeat. (x, y, yaw)
     inspection_route = [
-        [0.9, 3.2, 1.0],
-        [1.0, 1.5, 1.0],
-        [2.5, 1.5, 1.0],
-        [2.0, 4.0, 1.0],
+        [2.0, 3.5],
+        [1.0, 3.5],
+        [1.0, 1.5],
+        [2.5, 1.5],
+        [2.0, 3.5],
     ]
 
     # Set our demo's initial pose
@@ -49,13 +50,6 @@ def main() -> None:
     for pt in inspection_route:
         inspection_pose.pose.position.x = pt[0]
         inspection_pose.pose.position.y = pt[1]
-        # Simplification of angle handling for demonstration purposes
-        if pt[2] > 0:
-            inspection_pose.pose.orientation.z = 0.707
-            inspection_pose.pose.orientation.w = 0.707
-        else:
-            inspection_pose.pose.orientation.z = -0.707
-            inspection_pose.pose.orientation.w = 0.707
         inspection_points.append(deepcopy(inspection_pose))
 
     wpf_task = navigator.followWaypoints(inspection_points)
