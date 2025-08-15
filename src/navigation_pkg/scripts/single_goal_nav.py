@@ -65,6 +65,11 @@ def main():
             if now - nav_start > Duration(seconds=600.0):
                 navigator.cancelTask()
 
+    initial_pose.header.stamp = navigator.get_clock().now().to_msg()
+    navigator.goToPose(initial_pose)
+    while not navigator.isTaskComplete():
+        pass
+
     navigator.lifecycleShutdown()
     exit(0)
 
