@@ -22,11 +22,12 @@ def main() -> None:
     # Inspection route, probably read in from a file for a real application
     # from either a map or drive and repeat. (x, y, yaw)
     inspection_route = [
-        [2.0, 3.5],
-        [1.0, 3.5],
-        [1.0, 1.5],
-        [2.5, 1.5],
-        [2.0, 3.5],
+        [1.9, 3.9], #straight out
+        [1.27, 3.2], #entering hallway1
+        [1.21, 1.66], #exeting hallway1
+        [2.12, 1.11],
+        [2.71, 1.11], #entering hallway2
+        [2.71, 3.85], #exeting hallway2
     ]
 
     # Set our demo's initial pose
