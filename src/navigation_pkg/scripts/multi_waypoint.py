@@ -1,91 +1,86 @@
 #!/usr/bin/env python3
 
-from copy import deepcopy
-
+import math
+import rclpy
 from geometry_msgs.msg import PoseStamped
 from nav2_simple_commander.robot_navigator import BasicNavigator, TaskResult
-
-import rclpy
 from rclpy.duration import Duration
-import time
+from tf_transformations import quaternion_from_euler
 
+def compute_heading(x1, y1, x2, y2):
+    return math.atan2(y2 - y1, x2 - x1)
+
+def create_pose(x, y, theta=0.0, frame='map', navigator=None):
+    pose = PoseStamped()
+    pose.header.frame_id = frame
+    pose.header.stamp = navigator.get_clock().now().to_msg()
+    pose.pose.position.x = x
+    pose.pose.position.y = y
+    q = quaternion_from_euler(0, 0, theta)
+    pose.pose.orientation.x = q[0]
+    pose.pose.orientation.y = q[1]
+    pose.pose.orientation.z = q[2]
+    pose.pose.orientation.w = q[3]
+    return pose
 
 def main():
     rclpy.init()
-
     navigator = BasicNavigator()
+    navigator.get_clock().now()
 
-    # Security route, probably read in from a file for a real application
-    # from either a map or drive and repeat.
-    security_route = [
-        # [1.0, 1.5],
-        [0.9, 3.2],
-        [2.0, 0.6],
-        # [2.4, 3.5],
-        # [1.3, 3.5],
-        # [1.0, 1.5],
-        ]
-
-    initial_pose = PoseStamped()
-    initial_pose.header.frame_id = 'map'
-    initial_pose.header.stamp = navigator.get_clock().now().to_msg()
-    initial_pose.pose.position.x = 1.90
-    initial_pose.pose.position.y = 2.40
-    initial_pose.pose.orientation.z = 0.0
-    initial_pose.pose.orientation.w = 1.0
+    # Set initial pose
+    initial_pose = create_pose(1.90, 2.40, 0.0, navigator=navigator)
     navigator.setInitialPose(initial_pose)
 
     navigator.waitUntilNav2Active()
-    time.sleep(2)  # Give Nav2 a moment to settle
 
-    while rclpy.ok():
-        # Send our route
-        route_poses = []
-        pose = PoseStamped()
-        pose.header.frame_id = 'map'
-        pose.header.stamp = navigator.get_clock().now().to_msg()
-        pose.pose.orientation.w = 1.0
-        for pt in security_route:
-            pose.pose.position.x = pt[0]
-            pose.pose.position.y = pt[1]
-            route_poses.append(deepcopy(pose))
+    # Define raw waypoints (x, y)
+    raw_points = [
+        (1.90, 2.40),
+        (1.9, 3.7),
+        (1.27, 3.2),
+        (1.21, 1.66),
+        (2.12, 1.11),
+        (2.71, 1.11),
+        (2.71, 3.85),
+        (1.9, 3.7),
+        (1.90, 2.40)  # back to initial
+    ]
 
-        navigator.goThroughPoses(route_poses)
-        # navigator.followWaypoints(route_poses)
+    # Generate poses with heading
+    goal_poses = []
+    prev_x, prev_y = initial_pose.pose.position.x, initial_pose.pose.position.y
+    for x, y in raw_points:
+        heading = compute_heading(prev_x, prev_y, x, y)
+        goal_poses.append(create_pose(x, y, heading, navigator=navigator))
+        prev_x, prev_y = x, y
 
-        # Do something during our route (e.x. AI detection on camera images for anomalies)
-        # Simply print ETA for the demonstation
-        i = 0
+
+    for i in range(len(goal_poses) - 1):
+        path = navigator.getPath(goal_poses[i], goal_poses[i + 1])
+        smoothed_path = navigator.smoothPath(path)
+        navigator.followPath(smoothed_path)
         while not navigator.isTaskComplete():
-            i += 1
-            feedback = navigator.getFeedback()
-            if feedback and i % 5 == 0:
-                print('Estimated time to complete current route: ' + '{0:.0f}'.format(
-                      Duration.from_msg(feedback.estimated_time_remaining).nanoseconds / 1e9)
-                      + ' seconds.')
+            pass
 
-                # Some failure mode, must stop since the robot is clearly stuck
-                if Duration.from_msg(feedback.navigation_time) > Duration(seconds=180.0):
-                    print('Navigation has exceeded timeout of 180s, canceling request.')
-                    navigator.cancelTask()
 
-        # If at end of route, reverse the route to restart
-        print('Reversing!')
-        security_route.reverse()
+    # i = 0
+    # while not navigator.isTaskComplete():
+    #     i += 1
+    #     feedback = navigator.getFeedback()
+    #     if feedback and i % 5 == 0:
+    #         print(f'Executing current waypoint: {feedback.current_waypoint + 1}/{len(goal_poses)}')
+    #         now = navigator.get_clock().now()
+    #         if now - nav_start > Duration(seconds=600.0):
+    #             navigator.cancelTask()
 
-        result = navigator.getResult()
-        if result == TaskResult.SUCCEEDED:
-            print('Route complete! Restarting...')
-            time.sleep(2)  # Add delay before restarting
-        elif result == TaskResult.CANCELED:
-            print('Security route was canceled, exiting.')
-            exit(1)
-        elif result == TaskResult.FAILED:
-            time.sleep(5)  # Wait 5 seconds before retrying
-            print('Security route failed! Restarting from other side...')
+    initial_pose.header.stamp = navigator.get_clock().now().to_msg()
+    navigator.goToPose(initial_pose)
+    while not navigator.isTaskComplete():
+        pass
 
+    navigator.lifecycleShutdown()
     exit(0)
-
 
 if __name__ == '__main__':
     main()
