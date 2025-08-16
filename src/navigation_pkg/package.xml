@@ -5,7 +5,7 @@
   <description>Navigation package for TurtleBot3 in a custom Gazebo world</description>
 
   <maintainer email="sampatry8@gmail.com">Sam</maintainer>
-  <license>MIT</license>
+  <license></license>
 
   <buildtool_depend>ament_cmake</buildtool_depend>
 
@@ -36,9 +36,6 @@
     <!-- From youtube vid -->
     <buildtool_depend>ament_cmake_python</buildtool_depend>
     <depend>rclcpp</depend>
-
-    <!-- For occupancy updater -->
-    <exec_depend>sensor_msgs</exec_depend>
 
   <export>
     <build_type>ament_cmake</build_type>
