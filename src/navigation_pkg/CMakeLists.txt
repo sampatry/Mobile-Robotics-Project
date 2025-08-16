@@ -12,19 +12,13 @@ find_package(nav_msgs REQUIRED)
 find_package(ament_cmake_python REQUIRED)
 find_package(rclpy REQUIRED)
 
-# Build C++ node
-add_executable(pub_occupancy_grid src/pub_occupancy_grid.cpp)
-ament_target_dependencies(pub_occupancy_grid rclcpp nav_msgs)
-
-install(TARGETS
-  pub_occupancy_grid
-  DESTINATION lib/${PROJECT_NAME})
-
 # Install Python scripts
 install(PROGRAMS
   scripts/multi_waypoint.py
   scripts/single_goal_nav.py
   scripts/test1.py
+  scripts/occupancy_updater.py
+  scripts/occu_test.py
   DESTINATION lib/${PROJECT_NAME})
 
 

@@ -12,9 +12,9 @@ class WebcamPublisher(Node):
         self.publisher_ = self.create_publisher(Image, 'webcam/image_raw', 10)
         self.cap = cv2.VideoCapture(0)
         if not self.cap.isOpened():
-            self.get_logger().error('❌ Webcam failed to open')
+            self.get_logger().error('Webcam failed to open')
         else:
-            self.get_logger().info('✅ Webcam opened successfully')
+            self.get_logger().info('Webcam opened successfully')
         self.bridge = CvBridge()
         self.timer = self.create_timer(0.1, self.publish_frame)
 
@@ -23,9 +23,9 @@ class WebcamPublisher(Node):
         if ret:
             msg = self.bridge.cv2_to_imgmsg(frame, encoding='bgr8')
             self.publisher_.publish(msg)
-            self.get_logger().info('📸 Published a frame')
+            self.get_logger().info('Published a frame')
         else:
-            self.get_logger().warn('⚠️ Failed to capture frame')
+            self.get_logger().warn('Failed to capture frame')
 
 def main(args=None):
     rclpy.init(args=args)

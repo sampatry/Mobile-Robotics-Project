@@ -37,6 +37,9 @@
     <buildtool_depend>ament_cmake_python</buildtool_depend>
     <depend>rclcpp</depend>
 
+    <!-- For occupancy updater -->
+    <exec_depend>sensor_msgs</exec_depend>
+
   <export>
     <build_type>ament_cmake</build_type>
   </export>
