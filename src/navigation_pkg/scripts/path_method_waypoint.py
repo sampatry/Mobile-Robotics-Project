@@ -63,17 +63,6 @@ def main():
         while not navigator.isTaskComplete():
             pass
 
-
-    # i = 0
-    # while not navigator.isTaskComplete():
-    #     i += 1
-    #     feedback = navigator.getFeedback()
-    #     if feedback and i % 5 == 0:
-    #         print(f'Executing current waypoint: {feedback.current_waypoint + 1}/{len(goal_poses)}')
-    #         now = navigator.get_clock().now()
-    #         if now - nav_start > Duration(seconds=600.0):
-    #             navigator.cancelTask()
-
     initial_pose.header.stamp = navigator.get_clock().now().to_msg()
     navigator.goToPose(initial_pose)
     while not navigator.isTaskComplete():
